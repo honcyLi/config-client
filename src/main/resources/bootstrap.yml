@@ -1,0 +1,40 @@
+
+#spring.application.name=order
+#spring.cloud.config.discovery.enabled=true
+#spring.cloud.config.discovery.service-id=CONFIG
+#spring.cloud.config.profile=dev
+spring:
+  application:
+    name: order
+  cloud:
+    config:
+      #不通过服务名来连接获取数据，直接通过config server 发布发布地址端口获取
+#      uri: http://localhost:8888/
+#      discovery:
+#        service-id: config
+#        enabled: true
+      label: master
+      profile: test
+      discovery:
+        enabled: true
+        service-id: CONFIG
+
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: CONFIG
+#      profile: dev
+#      label: master
+#eureka:
+#  client:
+#    service-url:
+#server:
+#  port: 8081
+
+
+#通过服务名config查找configserver来获取git仓库数据，需要注册到服务eureka上时
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka-server/eureka/
